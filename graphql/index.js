@@ -1,6 +1,6 @@
 // /graphql/index.js
 import { ApolloServer } from 'apollo-server-express';
-import { typeDefs } from './typeDefs/index.js'; 
+import { typeDefs } from './typeDefs/index.js';
 import { resolvers } from './resolvers/index.js';
 import jwt from 'jsonwebtoken';
 import User from '../models/user.model.js';
@@ -9,6 +9,8 @@ export const createApolloServer = async () => {
   return new ApolloServer({
     typeDefs,
     resolvers,
+    cache: "bounded",
+    persistedQueries: false,
     context: async ({ req }) => {
       try {
         const authHeader = req.headers.authorization || '';
@@ -30,7 +32,7 @@ export const createApolloServer = async () => {
         return {};
       }
     },
-    introspection: true, 
-    playground: true     
+    introspection: true,
+    playground: true
   });
 };
