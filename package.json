@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "node server.js"
+  },
   "type": "module",
   "dependencies": {
     "apollo-server-express": "^3.13.0",
